@@ -1,5 +1,4 @@
 coba
-configs
-controllers
-models
-routes
+go.mod
+go.sum
+main.go
