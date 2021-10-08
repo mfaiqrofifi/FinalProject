@@ -73,7 +73,7 @@ func (uc UserUsecase) DeteilRegister(ctx context.Context, IdUser int) ([]DomainR
 	return user, nil
 }
 func (uc UserUsecase) GetFriend(ctx context.Context, nama string) ([]DomainRegister, error) {
-	if nama != "" {
+	if nama == "" {
 		return []DomainRegister{}, errors.New("enter the name")
 	}
 	user, err := uc.Repo.GetFriend(ctx, nama)
