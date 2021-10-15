@@ -83,7 +83,7 @@ func TestLogin(t *testing.T) {
 		userRepository.On("Login", 
 		mock.Anything,
 		mock.AnythingOfType("string"),
-		mock.AnythingOfType("string")).Return(user,business.ErrPassword).Once()
+		mock.AnythingOfType("string")).Return(user,errors.New("password wrong")).Once()
 		_,err := userService.Login(context.Background(),"mfaiqrofifi@gmail.com","4532")
 		assert.NotNil(t,err)
 	})
