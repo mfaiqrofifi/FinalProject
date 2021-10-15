@@ -11,6 +11,7 @@ import (
 	"social_media/business"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
+	"errors"
 )
 
 var userRepository _mockUserRepository.Repository
