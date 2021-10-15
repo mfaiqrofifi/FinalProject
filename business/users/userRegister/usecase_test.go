@@ -62,6 +62,7 @@ func TestRegister(t *testing.T) {
 
 func TestLogin(t *testing.T) {
 	setup()
+	user.Password,_=encrypt.Hash(user.Password)
 	userRepository.On("Login", mock.Anything,
 		mock.AnythingOfType("string"),
 		mock.AnythingOfType("string")).Return(user, nil).Once()
@@ -77,6 +78,14 @@ func TestLogin(t *testing.T) {
 	t.Run("Test Case 3| Invalid Password", func(t *testing.T) {
 		_, err := userService.Login(context.Background(), "mfaiqrofifi@gmail.com", "")
 		assert.NotNil(t, err)
+	})
+	t.Run("Test Case 4| Wrong Password",func(t *testing){
+		userRepository.On("Login", 
+		mock.Anything,
+		mock.AnythingOfType("string"),
+		mock.AnythingOfType("string")).Return(user,business.ErrPassword).Once()
+		_,err := userService.Login(context.Background(),"mfaiqrofifi@gmail.com","4532")
+		assert.NotNil(t,err)
 	})
 }
 
