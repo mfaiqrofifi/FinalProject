@@ -8,10 +8,10 @@ import (
 	_mockUserRepository "social_media/business/users/userRegister/mocks"
 	"testing"
 	"time"
+	"social_media/helpers/encrypt"
 	"social_media/business"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"errors"
 )
 
 var userRepository _mockUserRepository.Repository
@@ -84,7 +84,7 @@ func TestLogin(t *testing.T) {
 		userRepository.On("Login", 
 		mock.Anything,
 		mock.AnythingOfType("string"),
-		mock.AnythingOfType("string")).Return(user,errors.New("password wrong")).Once()
+		mock.AnythingOfType("string")).Return(user,business.ErrPassword).Once()
 		_,err := userService.Login(context.Background(),"mfaiqrofifi@gmail.com","4532")
 		assert.NotNil(t,err)
 	})
